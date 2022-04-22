@@ -7,6 +7,9 @@
         <title>Document</title>
     </head>
     <body>
+        <label for="token">Enter Access Token</label>
+        <input id="token" placeholder="Acess token"/>
+        <br/>
         <button id="ledon">Led On</button>
         <br />
         <button id="ledoff">Led Off</button>
@@ -19,10 +22,12 @@
             const buzzerOn = document.getElementById("buzzeron");
             const buzzerOff = document.getElementById("buzzeroff");
             const url = window.location.host;
+
             console.log(url);
             btnOn.addEventListener("click", async (e) => {
                 try {
-                    const res = await fetch(`/ledon`);
+                    let token = document.getElementById("token").value;
+                    const res = await fetch(`/ledon?token=${token}`);
                     const data = await res.json();
                     console.log(data);
                 } catch (e) {
@@ -32,7 +37,8 @@
 
             btnOff.addEventListener("click", async (e) => {
                 try {
-                    const res = await fetch(`/ledoff`);
+                    let token = document.getElementById("token").value;
+                    const res = await fetch(`/ledoff?token=${token}`);
                     const data = await res.json();
                     console.log(data);
                 } catch (e) {
@@ -41,7 +47,8 @@
             });
             buzzerOn.addEventListener("click", async (e) => {
                 try {
-                    const res = await fetch(`/buzzeron`);
+                    let token = document.getElementById("token").value;
+                    const res = await fetch(`/buzzeron?token=${token}`);
                     const data = await res.json();
                     console.log(data);
                 } catch (e) {
@@ -50,7 +57,8 @@
             });
             buzzerOff.addEventListener("click", async (e) => {
                 try {
-                    const res = await fetch(`/buzzeroff`);
+                    let token = document.getElementById("token").value;
+                    const res = await fetch(`/buzzeroff?token=${token}`);
                     const data = await res.json();
                     console.log(data);
                 } catch (e) {
