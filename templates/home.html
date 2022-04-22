@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="ledon">Led On</button>
+        <br />
+        <button id="ledoff">Led Off</button>
+        <button id="buzzeron">Buzzer On</button>
+        <br />
+        <button id="buzzeroff">Buzzer Off</button>
+        <script>
+            const btnOn = document.getElementById("ledon");
+            const btnOff = document.getElementById("ledoff");
+            const buzzerOn = document.getElementById("buzzeron");
+            const buzzerOff = document.getElementById("buzzeroff");
+            const url = window.location.host;
+            console.log(url);
+            btnOn.addEventListener("click", async (e) => {
+                try {
+                    const res = await fetch(`/ledon`);
+                    const data = await res.json();
+                    console.log(data);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+
+            btnOff.addEventListener("click", async (e) => {
+                try {
+                    const res = await fetch(`/ledoff`);
+                    const data = await res.json();
+                    console.log(data);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+            buzzerOn.addEventListener("click", async (e) => {
+                try {
+                    const res = await fetch(`/buzzeron`);
+                    const data = await res.json();
+                    console.log(data);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+            buzzerOff.addEventListener("click", async (e) => {
+                try {
+                    const res = await fetch(`/buzzeroff`);
+                    const data = await res.json();
+                    console.log(data);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        </script>
+    </body>
+</html>
