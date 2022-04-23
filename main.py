@@ -22,9 +22,11 @@ def turnLedOn():
     token = request.args.get('token')
     try:
         resp = jwt.decode(token, "Privacy and security project", algorithm="HS256")
+        print(resp)
         if not str(resp["Name"])=="Shivansh":
             return jsonify({"error": "Not authenticated"})
-    except:
+    except Exception as e:
+        print(e)
         return jsonify({"error": "Not authenticated"})
     led.write(1)
     return jsonify({'message':"led on",'data':True})
