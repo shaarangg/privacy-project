@@ -25,6 +25,13 @@
                 <button id="buzzeron" type="button" class="btn btn-outline-success">Buzzer On</button>
                 <br />
                 <button id="buzzeroff" type="button" class="btn btn-outline-danger">Buzzer Off</button>
+                <br/>
+                <div class="alert alert-success" id="alertS" style="display: none;">
+                    <strong>Success!</strong> Action successful.
+                </div>
+                <div class="alert alert-danger" id="alertD" style="display: none;">
+                    <strong>Error :(</strong> Action un-successful.
+                </div>
             </div>
         </div>
         <style>
@@ -46,15 +53,36 @@
             const buzzerOn = document.getElementById("buzzeron");
             const buzzerOff = document.getElementById("buzzeroff");
             const url = window.location.host;
+            let sa = document.getElementById("alertS");
+            let da = document.getElementById("alertD");
+
+            const hide = (element) => {
+                element.style.display = "none";
+            }
 
             btnOn.addEventListener("click", async (e) => {
                 try {
                     let token = document.getElementById("token").value;
                     const res = await fetch(`/ledon?token=${token}`);
                     const data = await res.json();
+                    if(data.data == true) {
+                        sa.style.display = "inline";
+                        setTimeout(() => {
+                            hide(sa);
+                        }, 3000)
+                    } else {
+                        da.style.display = "inline";
+                        setTimeout(() => {
+                            hide(da);
+                        }, 3000);
+                    }
                     console.log(data);
                 } catch (e) {
                     console.log(e);
+                    da.style.display = "inline";
+                    setTimeout(() => {
+                        hide(da);
+                    }, 3000);
                 }
             });
 
@@ -63,9 +91,24 @@
                     let token = document.getElementById("token").value;
                     const res = await fetch(`/ledoff?token=${token}`);
                     const data = await res.json();
+                    if(data.data == true) {
+                        sa.style.display = "inline";
+                        setTimeout(() => {
+                            hide(sa);
+                        }, 3000)
+                    } else {
+                        da.style.display = "inline";
+                        setTimeout(() => {
+                            hide(da);
+                        }, 3000);
+                    }
                     console.log(data);
                 } catch (e) {
                     console.log(e);
+                    da.style.display = "inline";
+                    setTimeout(() => {
+                        hide(da);
+                    }, 3000);
                 }
             });
 
@@ -74,9 +117,24 @@
                     let token = document.getElementById("token").value;
                     const res = await fetch(`/buzzeron?token=${token}`);
                     const data = await res.json();
+                    if(data.data == true) {
+                        sa.style.display = "inline";
+                        setTimeout(() => {
+                            hide(sa);
+                        }, 3000)
+                    } else {
+                        da.style.display = "inline";
+                        setTimeout(() => {
+                            hide(da);
+                        }, 3000);
+                    }
                     console.log(data);
                 } catch (e) {
                     console.log(e);
+                    da.style.display = "inline";
+                    setTimeout(() => {
+                        hide(da);
+                    }, 3000);
                 }
             });
 
@@ -85,9 +143,24 @@
                     let token = document.getElementById("token").value;
                     const res = await fetch(`/buzzeroff?token=${token}`);
                     const data = await res.json();
+                    if(data.data == true) {
+                        sa.style.display = "inline";
+                        setTimeout(() => {
+                            hide(sa);
+                        }, 3000)
+                    } else {
+                        da.style.display = "inline";
+                        setTimeout(() => {
+                            hide(da);
+                        }, 3000);
+                    }
                     console.log(data);
                 } catch (e) {
                     console.log(e);
+                    da.style.display = "inline";
+                    setTimeout(() => {
+                        hide(da);
+                    }, 3000);
                 }
             });
         </script>
